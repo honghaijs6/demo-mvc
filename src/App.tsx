@@ -1,28 +1,28 @@
 import MoTodo from "./models/MoTodo";
 import TodoController from "./controllers/TodoController";
+import MVCView from "./Libs/MVC/MVCView";
 
 import "./styles.css";
 import React from "react";
 import TodoMaker from "./components/TodoMaker";
 import TodoList from "./components/TodoList";
-
-type MyProps = {
-  [key: string]: any;
-};
+import Login from "./components/Login";
 
 const moTodo = new MoTodo();
-const myHandler = new TodoController(moTodo);
+const myHandler = new TodoController(moTodo)
 
-class TodoApp extends React.Component {
-  state = myHandler.stateBuilder("todo");
 
-  constructor(props: MyProps) {
-    super(props);
-    myHandler.connectView(this);
+class TodoApp extends MVCView {
+
+  constructor(){
+    super(myHandler,moTodo)
   }
 
-  render() {
-    return (
+  render(): React.ReactNode { 
+    
+    const {state} = myHandler.MODELS.todo ;
+    
+    return state.userInfo ?  (
       <div>
         <div className="header">
           <h1>todos</h1>
@@ -33,14 +33,15 @@ class TodoApp extends React.Component {
         </section>
         <footer className="footer">
           <span className="todo-count">
-            <strong>1</strong> item left
+            <strong>{state.todos.length}</strong> item left
           </span>
 
           <button className="clear-completed">Clear completed</button>
         </footer>
+        
       </div>
-    );
+    ):<Login />;
   }
 }
 
-export default TodoApp;
+export default TodoApp ; 

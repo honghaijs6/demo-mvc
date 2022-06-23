@@ -14,8 +14,9 @@ class AbtractController implements iControler {
   } = Object();
 
   react: React.ComponentState;
-  constructor(name: string) {
+  constructor(name: string, model:iModel) {
     this._name = name;
+    model.subscribe(this);
   }
 
   /**
@@ -40,13 +41,7 @@ class AbtractController implements iControler {
     this.react = ReactComponent;
   }
 
-  /**
-   * NEED OVERIDE
-   
-  onChange(props: propsType | string, value: any) {
-    this.model.update(props, value);
-  }
-  */
+  
 }
 
 export default AbtractController;

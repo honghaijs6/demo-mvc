@@ -1,19 +1,26 @@
-import AbtractModel from "../Libs/MVC/AbtractModel";
+import { MVCModel } from "../Libs/MVC";
 import iTodo from "./iTodo";
 
 interface Todo {
+  
   id: number;
   title: string;
   completed: boolean;
   status?: string;
 }
 
-class MoToDo extends AbtractModel implements iTodo {
+const NAME = 'todo';
+const defineState = {
+  userInfo:undefined, 
+  todos: [],
+  filter: "All"
+}
+
+class MoToDo extends MVCModel implements iTodo {
+
+  
   constructor() {
-    super("todo", {
-      todos: [],
-      filter: "All"
-    });
+    super(NAME, defineState);
   }
 
   /**

@@ -1,11 +1,20 @@
+/**
+ * MODEL LAYER : USING SINGLETON PATTERN 
+ * 
+ */
+
 import iController from "./interface/Controller";
 import iModel from "./interface/Model";
+
 
 type propType = {
   [key: string]: any;
 };
 
 class AbtractModel implements iModel {
+
+  static _instance: AbtractModel;
+
   _name: string;
   CTRL: iController = Object();
   state: propType;
@@ -13,6 +22,13 @@ class AbtractModel implements iModel {
   constructor(name: string, defineState: propType) {
     this._name = name;
     this.state = defineState;
+
+    if(!AbtractModel._instance){
+      AbtractModel._instance = this ; 
+    }
+
+    return AbtractModel._instance ; 
+
   }
 
   setState(props: propType) {

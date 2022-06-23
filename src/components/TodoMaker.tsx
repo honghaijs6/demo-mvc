@@ -5,20 +5,33 @@ interface TodoProps {
   handler: iTodoController;
 }
 
-const TodoMaker: React.FC<TodoProps> = ({ handler = Object() }) => {
-  const submit = (e) => {
-    if (e.which === 13) {
-      handler.callAction(e.target.value, "add");
-      e.target.value = "";
+const TodoMaker: React.FC<TodoProps> = ({ handler }) => {
+
+  const [txtInput, setInput] = React.useState('');
+
+  const onchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value)
+  }
+
+  const submit = (e: React.KeyboardEvent<HTMLInputElement>) => {
+
+
+    if (e.key === 'Enter') {
+      handler.callAction(txtInput, "add");
+      setInput('')
     }
+
+
   };
   return (
     <input
+      type="text"
+      value={txtInput}
       className="new-todo"
       placeholder="What needs to be done?"
-      onKeyDown={(e) => {
-        submit(e);
-      }}
+      onKeyDown={submit}
+      onChange={onchange}
+
       autoFocus
     />
   );

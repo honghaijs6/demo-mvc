@@ -1,13 +1,14 @@
-import AbtractController from "../Libs/MVC/AbtractController";
+import { MVCController } from "../Libs/MVC";
 import iTodoController from "./iTodoController";
 
 import iTodo from "../models/iTodo";
 
-class TodoController extends AbtractController implements iTodoController {
-  constructor(model: iTodo) {
-    super("TodoController");
+const NAME = 'TodoController';
+class TodoController extends MVCController implements iTodoController {
 
-    model.subscribe(this);
+  
+  constructor(model: iTodo) {
+    super(NAME, model);
   }
 
   callAction(item: string, action: string, id: number = 0) {
@@ -26,9 +27,7 @@ class TodoController extends AbtractController implements iTodoController {
     }
   }
 
-  /*onChange(props: propsType | string, value: any) {
-    this.model.update(props, value);
-  }*/
+  
 }
 
 export default TodoController;

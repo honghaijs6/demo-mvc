@@ -1,9 +1,10 @@
-import iModel from "../Libs/MVC/interface/Model";
+import {iMVCModel} from "../Libs/MVC/interface"
+
 type propsType = {
   [key: string]: any;
 };
 
-interface iTodo extends iModel {
+interface iTodo extends iMVCModel {
   state: propsType;
   addItem(title: string): void;
   updateItem(id: number, title: string): void;

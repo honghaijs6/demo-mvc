@@ -17,11 +17,13 @@ const TodoList: React.FC<TodoListProps> = ({ handler }) => {
 
   const { state } = handler.MODELS.todo;
 
-  const inputHandler = (e) => {};
+  //const inputHandler = (e) => {};
 
-  const submit = (id: number, title: string) => {
+
+  /*const submit = (id: number, title: string) => {
     handler.MODELS.todo.updateItem(id, title);
-  };
+  };*/
+
 
   const doubleClickHandler = (item: itemType) => {
     handler.MODELS.todo.editItem(item.id);
@@ -74,8 +76,9 @@ const TodoList: React.FC<TodoListProps> = ({ handler }) => {
             <input
               className="edit"
               value={item.title}
-              onChange={inputHandler}
-              onKeyDown={submit}
+              //onChange={inputHandler}
+              //onKeyDown={submit}
+
             />
           </li>
         );

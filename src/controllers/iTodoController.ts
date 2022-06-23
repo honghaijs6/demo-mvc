@@ -1,7 +1,8 @@
-import iController from "../Libs/MVC/interface/Controller";
+
+import { iMVCController } from "../Libs/MVC/interface";
 import iTodo from "../models/iTodo";
 
-interface iTodoController extends iController {
+interface iTodoController extends iMVCController {
   MODELS: {
     [key: string]: iTodo;
   };
